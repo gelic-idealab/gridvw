@@ -1,3 +1,5 @@
 # resources
 https://shopify.github.io/draggable/examples/flexbox.html
 https://github.com/SortableJS/Vue.Draggable
+https://haltu.github.io/muuri/
+http://gridstackjs.com/
