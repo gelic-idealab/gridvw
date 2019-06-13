@@ -1,16 +1,16 @@
 <template>
   <div id="app">
+
     <div class="grid">
-
-      <div class="item">
+      <div class="item" v-for="cell in cells" :key="cell.id" :style="cell.style">
+            <div class="input-field col s6">
+              <input v-model="cell.style" id="style" type="text">
+              <label for="style">Component Style</label>
+            </div>
         <div class="item-content">
-          <WebPage />
-        </div>
-      </div>
-
-      <div class="item">
-        <div class="item-content">
-          <WebPage />
+          <div :class="cell.size">
+            <WebPage :url="cell.url"/>
+          </div>
         </div>
       </div>
     </div>
@@ -19,8 +19,8 @@
 
 <script>
 import WebPage from './components/WebPage.vue'
-import 'hammerjs';
 import Muuri from 'muuri';
+import 'hammerjs';
 
 export default {
   name: 'app',
@@ -29,6 +29,18 @@ export default {
   },
   data() {
     return {
+      cells: [
+        {
+          id: 0,
+          url: "https://nytimes.com",
+          style: "height:200px;width:200px"
+        },
+        {
+          id: 1,
+          url: "https://library.illinois.edu",
+          style: "height:200px;width:200px"
+        }
+      ],
       grid: null
     }
   },
@@ -62,9 +74,9 @@ export default {
 }
 .item {
   display: block;
-  position: absolute;
-  width: 300px;
-  height: 300px;
+  position: relative;
+  /* width: 300px;
+  height: 300px; */
   margin: 5px;
   z-index: 1;
   /* background: #000; */
