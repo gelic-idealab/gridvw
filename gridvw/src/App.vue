@@ -1,17 +1,22 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <WebPage />
+    <WebPage />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import WebPage from './components/WebPage.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    WebPage
+  },
+  data() {
+    return {
+      url: "https://google.com"
+    }
   }
 }
 </script>
