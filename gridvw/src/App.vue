@@ -1,86 +1,78 @@
 <template>
   <div id="app">
 
-    <div class="grid">
-      <div class="item" v-for="cell in cells" :key="cell.id">
-        <div class="item-content">
-          <web-page :url="cell.url" :title="cell.title"/>
-        </div>
-      </div>
-    </div>
+    <grid-layout
+            :layout="this.items"
+            :col-num="12"
+            :row-height="30"
+            :is-draggable="true"
+            :is-resizable="true"
+            :vertical-compact="true"
+            :margin="[10, 10]"
+            :use-css-transforms="true"
+    >
+
+        <grid-item v-for="item in items"
+                   :x="item.x"
+                   :y="item.y"
+                   :w="item.w"
+                   :h="item.h"
+                   :i="item.i"
+                   :key="item.i"
+      >
+        <web-page :url="item.url" :title="item.title" :h="item.h*30"/>
+      </grid-item>
+    </grid-layout>
   </div>
 </template>
 
 <script>
 import WebPage from './components/WebPage.vue'
-import Muuri from 'muuri';
+import VueGridLayout from 'vue-grid-layout';
 
 export default {
   name: 'app',
   components: {
+    GridLayout: VueGridLayout.GridLayout,
+    GridItem: VueGridLayout.GridItem,
     WebPage
   },
   data() {
     return {
-      cells: [
+      items: [
         {
-          id: 0,
+          i: 0,
           url: "https://nytimes.com",
-          title: "NY Times"
+          title: "NY Times",
+          x:0,
+          y:0,
+          w:2,
+          h:2
         },
         {
-          id: 1,
+          i: 1,
           url: "https://library.illinois.edu",
-          title: "Library"
+          title: "Library",
+          x:1,
+          y:2,
+          w:2,
+          h:2
         },
         {
-          id: 2,
+          i: 2,
           url: "https://library.illinois.edu/enx",
-          title: "Grainger"
+          title: "Grainger",
+          x:2,
+          y:0,
+          w:2,
+          h:2
         }
       ],
-      grid: null
     }
-  },
-  mounted() {
-    this.grid = new Muuri('.grid', {
-      dragEnabled: true,
-      layout: {
-        fillGaps: true,
-        rounding: false
-        }
-  });
   }
 }
 </script>
 
 <style>
 
-.grid {
-  position: relative;
-}
-.item {
-  display: block;
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  margin: 5px;
-  z-index: 1;
-  /* background: #000; */
-  color: #fff;
-}
-.item.muuri-item-dragging {
-  z-index: 3;
-}
-.item.muuri-item-releasing {
-  z-index: 2;
-}
-.item.muuri-item-hidden {
-  z-index: 0;
-}
-.item-content {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
 </style>

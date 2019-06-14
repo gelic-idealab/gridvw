@@ -5,7 +5,7 @@
           <span class="card-title">{{ title }}</span>
         </div>
     </div>  
-    <iframe v-bind:src="url" frameborder=0></iframe>
+    <iframe v-bind:src="url" frameborder=0 width="100%" :height="h"></iframe>
   </div>
 </template>
 
@@ -14,7 +14,8 @@ export default {
   name: 'WebPage',
   props: {
     url: String,
-    title: String
+    title: String,
+    h: Number
   }
 }
 </script>
