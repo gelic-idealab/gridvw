@@ -9,8 +9,8 @@
             :row-height="30"
             :is-draggable="true"
             :is-resizable="true"
-            :vertical-compact="true"
-            :margin="[10, 10]"
+            :vertical-compact="false"
+            :margin="[0, 0]"
             :use-css-transforms="true"
     >
 
@@ -21,8 +21,9 @@
                    :h="item.h"
                    :i="item.i"
                    :key="item.i"
+  
       >
-        <web-page :url="item.url" :title="item.title" :h="item.h*30"/>
+        <web-page :title="item.title" :h="item.h*30" :url="item.url"/>
       </grid-item>
     </grid-layout>
 
@@ -49,26 +50,44 @@ export default {
           title: "",
           x:0,
           y:0,
-          w:4,
-          h:10
+          w:3,
+          h:23
         },
         {
           i: 1,
           url: "https://library.illinois.edu",
           title: "",
-          x:4,
+          x:3,
           y:0,
-          w:4,
-          h:10
+          w:3,
+          h:23
         },
         {
           i: 2,
           url: "https://library.illinois.edu/enx",
           title: "",
-          x:8,
+          x:6,
           y:0,
-          w:4,
-          h:10
+          w:3,
+          h:23
+        },
+        {
+          i: 3,
+          url: "https://3deposit.surge.sh",
+          title: "",
+          x:9,
+          y:0,
+          w:3,
+          h:23
+        },
+        {
+          i: 4,
+          url: "https://www.library.illinois.edu/infosci/",
+          title: "",
+          x:12,
+          y:27,
+          w:3,
+          h:28
         }
       ],
     }
@@ -85,7 +104,10 @@ export default {
         h:10
       })
     }
-  }
+  },
+  // mounted() {
+  //   this.items[0].url = items[0].url;
+  // }
 }
 </script>
 

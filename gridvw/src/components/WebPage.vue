@@ -1,10 +1,5 @@
 <template>
   <div class="web-page">
-    <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title">{{ title }}</span>
-        </div>
-    </div>  
     <div class="row">
       <input v-model="url" placeholder="url" id="url" type="text">
       <label for="url">Component URL</label>
