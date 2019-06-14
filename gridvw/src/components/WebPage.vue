@@ -1,11 +1,11 @@
 <template>
   <div class="web-page">
-    <div class="col">
-      <input v-model="url" placeholder="url" id="url" type="text">
-        <label for="url">Component URL</label>
-    </div>
-    <!-- <input  type="text" name="Component Height"> -->
-    <iframe v-bind:src="url" frameborder=0 style="width:100%;height:100%"></iframe>
+    <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">{{ title }}</span>
+        </div>
+    </div>  
+    <iframe v-bind:src="url" frameborder=0></iframe>
   </div>
 </template>
 
@@ -13,7 +13,8 @@
 export default {
   name: 'WebPage',
   props: {
-    url: String
+    url: String,
+    title: String
   }
 }
 </script>

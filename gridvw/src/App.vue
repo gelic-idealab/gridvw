@@ -2,15 +2,9 @@
   <div id="app">
 
     <div class="grid">
-      <div class="item" v-for="cell in cells" :key="cell.id" :style="cell.style">
-            <div class="input-field col s6">
-              <input v-model="cell.style" id="style" type="text">
-              <label for="style">Component Style</label>
-            </div>
+      <div class="item" v-for="cell in cells" :key="cell.id">
         <div class="item-content">
-          <div :class="cell.size">
-            <WebPage :url="cell.url"/>
-          </div>
+          <web-page :url="cell.url" :title="cell.title"/>
         </div>
       </div>
     </div>
@@ -20,7 +14,6 @@
 <script>
 import WebPage from './components/WebPage.vue'
 import Muuri from 'muuri';
-import 'hammerjs';
 
 export default {
   name: 'app',
@@ -33,12 +26,17 @@ export default {
         {
           id: 0,
           url: "https://nytimes.com",
-          style: "height:200px;width:200px"
+          title: "NY Times"
         },
         {
           id: 1,
           url: "https://library.illinois.edu",
-          style: "height:200px;width:200px"
+          title: "Library"
+        },
+        {
+          id: 2,
+          url: "https://library.illinois.edu/enx",
+          title: "Grainger"
         }
       ],
       grid: null
@@ -49,10 +47,7 @@ export default {
       dragEnabled: true,
       layout: {
         fillGaps: true,
-        // horizontal: true,
-        // alignRight: true,
-        // alignBottom: true,
-        // rounding: false
+        rounding: false
         }
   });
   }
@@ -60,23 +55,15 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 
 .grid {
   position: relative;
 }
 .item {
   display: block;
-  position: relative;
-  /* width: 300px;
-  height: 300px; */
+  position: absolute;
+  width: 300px;
+  height: 300px;
   margin: 5px;
   z-index: 1;
   /* background: #000; */
