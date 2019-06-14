@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-
+    
+    <a class="btn-floating btn-large waves-effect waves-light blue" v-on:click="addItem"><i class="material-icons">add</i></a>
+    
     <grid-layout
             :layout="this.items"
             :col-num="12"
@@ -23,6 +25,7 @@
         <web-page :url="item.url" :title="item.title" :h="item.h*30"/>
       </grid-item>
     </grid-layout>
+
   </div>
 </template>
 
@@ -43,36 +46,52 @@ export default {
         {
           i: 0,
           url: "https://nytimes.com",
-          title: "NY Times",
+          title: "",
           x:0,
           y:0,
-          w:2,
-          h:2
+          w:4,
+          h:10
         },
         {
           i: 1,
           url: "https://library.illinois.edu",
-          title: "Library",
-          x:1,
-          y:2,
-          w:2,
-          h:2
+          title: "",
+          x:4,
+          y:0,
+          w:4,
+          h:10
         },
         {
           i: 2,
           url: "https://library.illinois.edu/enx",
-          title: "Grainger",
-          x:2,
+          title: "",
+          x:8,
           y:0,
-          w:2,
-          h:2
+          w:4,
+          h:10
         }
       ],
+    }
+  },
+  methods: {
+    addItem: function() {
+      this.items.push({
+        i: this.items.length+1,
+        url: "",
+        title: "",
+        x:0,
+        y:0,
+        w:4,
+        h:10
+      })
     }
   }
 }
 </script>
 
 <style>
+#app {
+  height: 100vh
+}
 
 </style>
