@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     
-    <a class="btn-floating btn-large waves-effect waves-light blue" v-on:click="addItem"><i class="material-icons">add</i></a>
+    <v-btn fab color="black" v-on:click="addItem"><v-icon color="white">add</v-icon></v-btn>
     
     <grid-layout
             :layout="this.items"
@@ -46,7 +46,7 @@ export default {
       items: [
         {
           i: 0,
-          url: "https://nytimes.com",
+          url: "https://www.wikipedia.org/",
           title: "",
           x:0,
           y:0,
@@ -55,7 +55,7 @@ export default {
         },
         {
           i: 1,
-          url: "https://library.illinois.edu",
+          url: "https://vuejs.org/",
           title: "",
           x:6,
           y:0,

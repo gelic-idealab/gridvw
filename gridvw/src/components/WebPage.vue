@@ -5,8 +5,20 @@
         <input v-model="localUrl" placeholder="url" id="url" type="text" v-on:change="onUpdate">
         <label for="url">Component URL</label>
       </div> -->
+      <v-dialog v-model="dialog" max-width="500px">
+        <v-card>
+          <v-card-text>
+            <v-text-field v-model="url" label="Component URL"></v-text-field>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn flat color="primary" v-on:click="onUpdate">Submit</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+      <v-btn @click="dialog = !dialog" fab absolute small bottom left hover color="blue" ><v-icon color="white">edit</v-icon></v-btn>
       <div class="row">
-        <iframe v-bind:src="localUrl" frameborder=0 width="100%" :height="h"></iframe>
+        <embed v-bind:src="localUrl" frameborder=0 width="100%" :height="h"/>
       </div>
     <!-- </div> -->
   </div>
@@ -22,12 +34,15 @@ export default {
   },
   data() {
     return {
-      localUrl: this.url
+      localUrl: this.url,
+      dialog: false
     }
   },
   methods: {
       onUpdate() {
-        this.$emit('update:url', this.localUrl)
+        this.dialog = false;
+        this.localUrl=this.url
+        this.$emit('update:url', this.localUrl);
       }
   }
 }
