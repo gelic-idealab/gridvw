@@ -1,14 +1,9 @@
 <template>
-  <div class="web-page">
-    <!-- <div class="container"> -->
-      <!-- <div class="row">
-        <input v-model="localUrl" placeholder="url" id="url" type="text" v-on:change="onUpdate">
-        <label for="url">Component URL</label>
-      </div> -->
+  <div class="web-page" @mouseover="handle = !handle" @mouseleave="handle = !handle">
       <v-dialog v-model="dialog" max-width="500px">
         <v-card>
           <v-card-text>
-            <v-text-field v-model="url" label="Component URL"></v-text-field>
+            <v-text-field clearable v-model="url" label="Component URL"></v-text-field>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -16,11 +11,11 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <v-btn @click="dialog = !dialog" fab absolute small bottom left hover color="blue" ><v-icon color="white">edit</v-icon></v-btn>
-      <div class="row">
+        <v-toolbar v-show="handle" color="blue">
+          <v-icon color="white">drag_handle</v-icon>
+          <v-btn icon @click="dialog = !dialog"><v-icon color="white">edit</v-icon></v-btn>
+        </v-toolbar>
         <embed v-bind:src="localUrl" frameborder=0 width="100%" :height="h"/>
-      </div>
-    <!-- </div> -->
   </div>
 </template>
 
@@ -35,7 +30,8 @@ export default {
   data() {
     return {
       localUrl: this.url,
-      dialog: false
+      dialog: false,
+      handle: false
     }
   },
   methods: {
