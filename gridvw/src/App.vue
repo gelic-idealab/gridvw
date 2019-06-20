@@ -23,7 +23,7 @@
                    :key="item.i"
   
       >
-        <web-page :title="item.title" :h="item.h*30" :url="item.url"/>
+        <web-page :title="item.title" :h="item.h*30" :url.sync="item.url"/>
       </grid-item>
     </grid-layout>
 
@@ -50,45 +50,45 @@ export default {
           title: "",
           x:0,
           y:0,
-          w:3,
-          h:23
+          w:6,
+          h:10
         },
         {
           i: 1,
           url: "https://library.illinois.edu",
           title: "",
-          x:3,
-          y:0,
-          w:3,
-          h:23
-        },
-        {
-          i: 2,
-          url: "https://library.illinois.edu/enx",
-          title: "",
           x:6,
           y:0,
-          w:3,
-          h:23
-        },
-        {
-          i: 3,
-          url: "https://3deposit.surge.sh",
-          title: "",
-          x:9,
-          y:0,
-          w:3,
-          h:23
-        },
-        {
-          i: 4,
-          url: "https://www.library.illinois.edu/infosci/",
-          title: "",
-          x:12,
-          y:27,
-          w:3,
-          h:28
+          w:6,
+          h:10
         }
+        // {
+        //   i: 2,
+        //   url: "https://library.illinois.edu/enx",
+        //   title: "",
+        //   x:6,
+        //   y:0,
+        //   w:3,
+        //   h:23
+        // },
+        // {
+        //   i: 3,
+        //   url: "https://3deposit.surge.sh",
+        //   title: "",
+        //   x:9,
+        //   y:0,
+        //   w:3,
+        //   h:23
+        // },
+        // {
+        //   i: 4,
+        //   url: "https://www.library.illinois.edu/infosci/",
+        //   title: "",
+        //   x:12,
+        //   y:27,
+        //   w:3,
+        //   h:28
+        // }
       ],
     }
   },
@@ -103,6 +103,9 @@ export default {
         w:4,
         h:10
       })
+    },
+    componentURLUpdated(url,i) {
+        this.item[i].url=url
     }
   },
   // mounted() {

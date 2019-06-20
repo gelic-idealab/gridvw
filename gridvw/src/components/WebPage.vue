@@ -1,10 +1,14 @@
 <template>
   <div class="web-page">
-    <div class="row">
-      <input v-model="url" placeholder="url" id="url" type="text">
-      <label for="url">Component URL</label>
-    </div>
-    <iframe v-bind:src="url" frameborder=0 width="100%" :height="h"></iframe>
+    <!-- <div class="container"> -->
+      <!-- <div class="row">
+        <input v-model="localUrl" placeholder="url" id="url" type="text" v-on:change="onUpdate">
+        <label for="url">Component URL</label>
+      </div> -->
+      <div class="row">
+        <iframe v-bind:src="localUrl" frameborder=0 width="100%" :height="h"></iframe>
+      </div>
+    <!-- </div> -->
   </div>
 </template>
 
@@ -15,6 +19,16 @@ export default {
     url: String,
     title: String,
     h: Number
+  },
+  data() {
+    return {
+      localUrl: this.url
+    }
+  },
+  methods: {
+      onUpdate() {
+        this.$emit('update:url', this.localUrl)
+      }
   }
 }
 </script>
