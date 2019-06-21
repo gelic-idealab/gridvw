@@ -3,26 +3,11 @@
     <v-toolbar dark color="primary">
     <v-toolbar-side-icon></v-toolbar-side-icon>
 
-    <v-toolbar-title class="white--text">Grid Viz Wall</v-toolbar-title>
+    <v-toolbar-title class="white--text text-uppercase">Grid Viz Wall</v-toolbar-title>
 
     <v-spacer></v-spacer>
 
-    <v-btn icon>
-      <v-icon>search</v-icon>
-    </v-btn>
-
-    <v-btn icon>
-      <v-icon>apps</v-icon>
-    </v-btn>
-
-    <v-btn icon>
-      <v-icon>refresh</v-icon>
-    </v-btn>
-
-    <v-btn icon>
-      <v-icon>more_vert</v-icon>
-    </v-btn>
-    <v-btn fab color="black" v-on:click="addItem"><v-icon color="white">add</v-icon></v-btn>
+    <v-btn fab dark v-on:click="addItem"><v-icon color="white">add</v-icon></v-btn>
     <v-text-field v-on:change="updatePlaceholder('colnum')"
       :label="gl.colnum.label"
       :placeholder="gl.colnum.placeholder"
@@ -144,7 +129,7 @@ export default {
         x:0,
         y:0,
         w:4,
-        h:10,
+        h:4,
         spawn: true
       })
     },
