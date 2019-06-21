@@ -1,5 +1,5 @@
 <template>
-  <div class="web-page">
+  <div class="web-page" @mouseover="handle=true" @mouseleave="handle=false">
       <v-dialog v-model="dialog" max-width="500px">
         <v-card>
           <v-card-text>
@@ -11,11 +11,11 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <v-toolbar @mouseover="handle=true" @mouseleave="handle=false" transition="fade-transition" v-show="handle" color="blue">
+      <v-toolbar transition="fade-transition" v-show="handle" color="blue">
         <v-icon color="white">drag_handle</v-icon>
         <v-btn icon @click="dialog= !dialog"><v-icon color="white">edit</v-icon></v-btn>
       </v-toolbar>
-      <embed @mouseover="handle=true" @mouseleave="handle=false" v-bind:src="localUrl" frameborder=0 width="100%" :height="h"/>
+      <embed v-bind:src="localUrl" frameborder=0 width="100%" :height="h"/>
   </div>
 </template>
 
@@ -25,13 +25,14 @@ export default {
   props: {
     url: String,
     title: String,
-    h: Number
+    h: Number,
+    spawn: Boolean
   },
   data() {
     return {
       localUrl: this.url,
       dialog: false,
-      handle: false
+      handle: true
     }
   },
   methods: {
@@ -40,6 +41,9 @@ export default {
         this.localUrl=this.url
         this.$emit('update:url', this.localUrl);
       }
+  },
+  mounted() {
+    this.dialog = this.spawn
   }
 }
 </script>
