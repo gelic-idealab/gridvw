@@ -1,5 +1,5 @@
 <template>
-  <div class="web-page" @mouseover="handle = !handle" @mouseleave="handle = !handle">
+  <div class="web-page">
       <v-dialog v-model="dialog" max-width="500px">
         <v-card>
           <v-card-text>
@@ -11,11 +11,11 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-        <v-toolbar v-show="handle" color="blue">
-          <v-icon color="white">drag_handle</v-icon>
-          <v-btn icon @click="dialog = !dialog"><v-icon color="white">edit</v-icon></v-btn>
-        </v-toolbar>
-        <embed v-bind:src="localUrl" frameborder=0 width="100%" :height="h"/>
+      <v-toolbar @mouseover="handle=true" @mouseleave="handle=false" transition="fade-transition" v-show="handle" color="blue">
+        <v-icon color="white">drag_handle</v-icon>
+        <v-btn icon @click="dialog= !dialog"><v-icon color="white">edit</v-icon></v-btn>
+      </v-toolbar>
+      <embed @mouseover="handle=true" @mouseleave="handle=false" v-bind:src="localUrl" frameborder=0 width="100%" :height="h"/>
   </div>
 </template>
 

@@ -95,7 +95,7 @@ export default {
   methods: {
     addItem: function() {
       this.items.push({
-        i: this.items.length+1,
+        i: this.items.length+4,
         url: "",
         title: "",
         x:0,
