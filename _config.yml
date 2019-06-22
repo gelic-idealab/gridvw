@@ -1,1 +1,6 @@
+title: GridVW
+logo: /assets/img/logo.png
+description: Content client for large-scale visualization displays
+show_downloads: true
+google_analytics:
 theme: jekyll-theme-minimal
