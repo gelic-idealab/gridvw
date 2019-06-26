@@ -7,7 +7,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn fab color="primary" v-on:click="onUpdate">Submit</v-btn>
+            <v-btn v-on:click="onUpdate">Submit</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
