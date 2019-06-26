@@ -65,12 +65,12 @@ export default {
       gl: {
         colnum: { 
           label: "Columns",
-          value: 12,
+          value: 7680,
           placeholder:""
         },
         rowheight: { 
           label: "Row Height",
-          value: 50,
+          value: 1,
           placeholder:""
         },
         isdraggable: { 
@@ -103,8 +103,8 @@ export default {
           title: "",
           x:0,
           y:0,
-          w:2,
-          h:1,
+          w:1920,
+          h:500,
           spawn: false
         },
         {
@@ -113,8 +113,8 @@ export default {
           title: "",
           x:6,
           y:0,
-          w:2,
-          h:1,
+          w:1920,
+          h:500,
           spawn: false
         }
       ],
@@ -128,8 +128,8 @@ export default {
         title: "",
         x:0,
         y:0,
-        w:4,
-        h:4,
+        w:1920,
+        h:500,
         spawn: true
       })
     },
