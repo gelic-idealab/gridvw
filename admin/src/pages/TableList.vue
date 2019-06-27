@@ -4,7 +4,7 @@
       <div
         class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100"
       >
-        <md-card>
+        <md-card v-for="">
           <md-card-header data-background-color="green">
             <h4 class="title">Simple Table</h4>
             <p class="category">Here is a subtitle for this table</p>
@@ -34,11 +34,25 @@
 
 <script>
 import { SimpleTable, OrderedTable } from "@/components";
+import axios from 'axios';
 
 export default {
   components: {
     OrderedTable,
     SimpleTable
+  },
+  props: {
+    user_id: String
+  },
+  data() {
+    return {
+      views: []
+    }
+  },
+  mounted() {
+    let params = {user_id: this.user_id}
+    axios.get("http://localhost:5000/views", { params })
+    .then(response => this.views=response.data)
   }
 };
 </script>
