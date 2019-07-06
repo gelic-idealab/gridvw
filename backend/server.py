@@ -2,16 +2,16 @@ import datetime
 import json
 from uuid import uuid4
 from flask import Flask, request, jsonify
-from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, Date, JSON, DateTime, Binary
+from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, Date, JSON, DateTime, Binary, BLOB
 engine = create_engine('sqlite:///database.db', echo = True)
 meta = MetaData()
 
 views = Table(
    'views', meta, 
-   Column('id', String, primary_key = True), 
+   Column('id', String), 
    Column('user_id', String),
    Column('create_date', DateTime),
-   Column('modify_date',DateTime),
+   Column('modify_date',DateTime),      
    Column('view_config', JSON),
    Column('file', Binary)
 )
@@ -47,15 +47,14 @@ def views_api():
 
         blob_file = request.files['file']
         print("FILE:"+str(blob_file))
-        
-        if blob_file: kwargs.update({"file":blob_file})
+
+        if blob_file: kwargs.update({"file":blob_file.read()})
         
         new = views.insert().values(kwargs)
         # new = views.insert().values(id=view_id, user_id=user_id, create_date=create_date, modify_date=create_date, view_config=view_config)
         conn = engine.connect()
         conn.execute(new)
         
-        # return jsonify({"kwargs":f'{str(kwargs)}'})
         return jsonify({'msg':f'View created for {view_id}'})
 
 
@@ -86,6 +85,7 @@ def views_api():
         result = conn.execute(query)
 
         return jsonify(dict(result))
-    
+
+
 if __name__=='__main__':
     app.run()
