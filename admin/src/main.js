@@ -4,6 +4,9 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import App from "./App";
 
+// import PaperDashboard from "./plugins/paperDashboard";
+import "vue-notifyjs/themes/default.css";
+
 // router setup
 import routes from "./routes/routes";
 
