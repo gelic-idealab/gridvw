@@ -45,8 +45,8 @@ def views_api():
         create_date = datetime.datetime.now()
         kwargs = {"create_date": create_date, "view_config":view_config, "user_id":user_id, "id":view_id, "modify_date":create_date}
 
-        blob_file = request.files['file']
-        print("FILE:"+str(blob_file))
+        if request.files['file']:
+            blob_file = request.files['file']
 
         if blob_file: kwargs.update({"file":blob_file.read()})
         
