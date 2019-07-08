@@ -2,8 +2,8 @@ import datetime
 import json
 from uuid import uuid4
 from flask import Flask, request, jsonify
-from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, Date, JSON, DateTime, Binary, BLOB
-engine = create_engine('sqlite:///database.db', echo = True)
+from sqlalchemy import select, create_engine, MetaData, Table, Column, Integer, String, Date, JSON, DateTime, Binary, BLOB
+
 meta = MetaData()
 
 views = Table(
@@ -15,9 +15,8 @@ views = Table(
    Column('view_config', JSON),
    Column('file', Binary)
 )
+engine = create_engine('sqlite:///database.db', echo = True)
 meta.create_all(engine)
-
-engine = create_engine('sqlite:///database.db')
 
 app = Flask(__name__)
 
@@ -28,13 +27,13 @@ def views_api():
 
         view_id = request.args.get('id')
 
-        query = views.select().where(views.c.id==view_id)
+        query = select([views.c.view_config]).where(views.c.id==view_id)
         conn = engine.connect()
         result = conn.execute(query)
 
-        first_row = dict(result.fetchone())
+        first_row = result.fetchone()
 
-        return jsonify(first_row)
+        return jsonify(dict(first_row))
     
 
     if request.method == 'POST':
