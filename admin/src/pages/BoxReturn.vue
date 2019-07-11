@@ -24,7 +24,7 @@ export default {
         sdk.getTokensAuthorizationCodeGrant(code, null, function(err, tokenInfo) {
             const client = sdk.getPersistentClient(tokenInfo);
 
-            // PERFORM API ACTIONS WITH CLIENT
+            console.log(client);
         });
         
     }

@@ -7,7 +7,7 @@
       <mdb-input label="Your password" icon="lock" type="password"/>
     </div> -->
     <div class="text-center">
-      <mdb-btn v-on:click="oAuth">Login</mdb-btn>
+      <mdb-btn v-on:click="BoxOauth">Login</mdb-btn>
     </div>
   </form>
   <!-- Material form login -->
@@ -17,9 +17,10 @@
 const appConfig = require('../../config.js');     // Auth keys and redirect
 const boxSDK = require('box-node-sdk');       // Box SDK
 const querystring = require('querystring');   // Querystring stringifier
+
 export default {
     methods: {
-        oAuth() {
+        BoxOauth() {
             // Build Box auth object
             const payload = {
             'response_type': 'code',
@@ -36,3 +37,7 @@ export default {
     
 }
 </script>
+<style>
+
+</style>
+

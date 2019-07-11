@@ -9,7 +9,7 @@
     <v-btn fab dark v-on:click="addItem"><v-icon color="white">add</v-icon></v-btn>
     
     <v-spacer></v-spacer>
-    <v-btn fab dark v-on:click="pushView"><v-icon color="white">PUSH VIEW</v-icon></v-btn>
+    <!-- <v-btn fab dark v-on:click="pushView"><v-icon color="white">PUSH VIEW</v-icon></v-btn> -->
 
     <v-text-field v-on:change="updatePlaceholder('colnum')"
       :label="config.gl.colnum.label"
