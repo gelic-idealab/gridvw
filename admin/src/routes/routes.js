@@ -9,6 +9,9 @@ import Maps from "@/pages/Maps.vue";
 import Notifications from "@/pages/Notifications.vue";
 import UpgradeToPRO from "@/pages/UpgradeToPRO.vue";
 import ViewEditor from "@/pages/ViewEditor.vue";
+import Login from "@/pages/Login.vue";
+import BoxReturn from "@/pages/BoxReturn.vue";
+
 
 const routes = [
   {
@@ -60,9 +63,14 @@ const routes = [
         component: Notifications
       },
       {
-        path: "upgrade",
-        name: "Upgrade to PRO",
-        component: UpgradeToPRO
+        path: "login",
+        name: "login",
+        component: Login
+      },
+      {
+        path: "return",
+        name: "return",
+        component: BoxReturn
       }
     ]
   }
