@@ -13,8 +13,13 @@ views = Table(
    Column('create_date', DateTime),
    Column('modify_date',DateTime),      
    Column('view_config', JSON),
-   Column('file', Binary)
+   Column('file', Binary),
+   Column('view_details', JSON)
 )
+
+view_metadata = Table{
+    'view_metadata', meta,
+}
 engine = create_engine('sqlite:///database.db', echo = True)
 meta.create_all(engine)
 
@@ -22,6 +27,8 @@ app = Flask(__name__)
 
 @app.route('/views', methods=['GET','POST','PATCH','DELETE'])
 def views_api():
+    
+    headers = dict({'ACCESS-CONTROL-ALLOW-ORIGIN': '*'})
     
     if request.method == 'GET':
 
@@ -36,7 +43,7 @@ def views_api():
         return jsonify(dict(first_row))
     
 
-    if request.method == 'POST':
+    elif request.method == 'POST':
         view_data = json.loads(request.form.get('view_data'))
         view_id = str(uuid4())
         user_id = view_data.get('user_id')
@@ -57,7 +64,7 @@ def views_api():
         return jsonify({'msg':f'View created for {view_id}'})
 
 
-    if request.method == 'PATCH':
+    elif request.method == 'PATCH':
         view_data = request.json
         view_id = view_data.get('id')
         user_id = view_data.get('user_id')
@@ -76,14 +83,17 @@ def views_api():
         return jsonify({'msg':f'Updated {view_id}'})
 
     
-    if request.method == 'DELETE':
+    elif request.method == 'DELETE':
         view_id = request.args.get('id')
 
         query = views.delete().where(views.c.id==view_id)
         conn = engine.connect()
         result = conn.execute(query)
-
+  
         return jsonify(dict(result))
+    
+    else:
+        return web.Response(status=200, headers=headers)
 
 
 if __name__=='__main__':

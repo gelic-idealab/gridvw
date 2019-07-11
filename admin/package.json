@@ -20,6 +20,7 @@
     "vue-github-buttons": "3.1.0",
     "vue-grid-layout": "^2.3.4",
     "vue-material": "1.0.0-beta-11",
+    "vue-notifyjs": "^0.4.3",
     "vue-router": "3.0.6",
     "vue-social-sharing": "2.4.5",
     "vuetify": "^1.5.16"
