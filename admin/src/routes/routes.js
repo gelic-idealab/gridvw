@@ -66,13 +66,13 @@ const routes = [
         path: "login",
         name: "login",
         component: Login
-      },
-      {
-        path: "return",
-        name: "return",
-        component: BoxReturn
       }
     ]
+  },
+  {
+    path: "/return",
+    name: "return",
+    component: BoxReturn
   }
 ];
 
