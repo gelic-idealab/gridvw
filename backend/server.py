@@ -16,9 +16,6 @@ views = Table(
    Column('file', Binary),
 )
 
-view_metadata = Table{
-    'view_metadata', meta,
-}
 engine = create_engine('sqlite:///database.db', echo = True)
 meta.create_all(engine)
 
@@ -92,7 +89,7 @@ def views_api():
         return jsonify(dict(result))
     
     else:
-        return web.Response(status=200, headers=headers)
+        return jsonify({'msg': 'unhandled method'}, headers=headers)
 
 
 if __name__=='__main__':
