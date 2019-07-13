@@ -1,5 +1,8 @@
 <template>
-    <div>Redirecting...</div>
+  <div>
+    <notifications></notifications>
+    Redirecting...
+  </div>
 </template>
 
 <script>
@@ -61,6 +64,14 @@ export default {
             try {
                 const client = sdk.getPersistentClient(tokenInfo);
                 console.log(client);
+                this.$notify({
+                    message:
+                    "Box client created",
+                    icon: "add_alert",
+                    horizontalAlign: "top",
+                    verticalAlign: "right",
+                    type: "success"
+                });
             }
             catch(err) {
                 console.log(err);
