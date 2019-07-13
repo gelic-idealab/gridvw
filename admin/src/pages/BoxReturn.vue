@@ -48,7 +48,25 @@ export default {
         }
         
         axios.post('https://api.box.com/oauth2/token', qs, config)
-        .then(response => console.log(response));
+        .then(response => {
+            console.log(response);
+            let data = response.data;
+            let tokenInfo = {
+                accessToken: data.access_token,
+                refreshToken: data.refresh_token,
+                accessTokenTTLMS: data.expires_in,
+                acquiredAtMS: Date.now() 
+            }
+            console.log(tokenInfo);
+            try {
+                const client = sdk.getPersistentClient(tokenInfo);
+                console.log(client);
+            }
+            catch(err) {
+                console.log(err);
+            }
+
+        });
 
         /*
         * Validate that an object is a valid TokenInfo object
