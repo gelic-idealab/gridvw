@@ -4,7 +4,7 @@
       <div
         class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100"
       >
-        <md-card v-for="">
+        <md-card v-for="(view, index) in views" :key="index">
           <md-card-header data-background-color="green">
             <h4 class="title">Simple Table</h4>
             <p class="category">Here is a subtitle for this table</p>
@@ -15,7 +15,7 @@
         </md-card>
       </div>
 
-      <div
+      <!-- <div
         class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100"
       >
         <md-card class="md-card-plain">
@@ -27,7 +27,7 @@
             <ordered-table></ordered-table>
           </md-card-content>
         </md-card>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -38,7 +38,7 @@ import axios from 'axios';
 
 export default {
   components: {
-    OrderedTable,
+    // OrderedTable,
     SimpleTable
   },
   props: {

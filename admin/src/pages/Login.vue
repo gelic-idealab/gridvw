@@ -6,8 +6,8 @@
       <mdb-input label="Your email" icon="envelope" type="email"/>
       <mdb-input label="Your password" icon="lock" type="password"/>
     </div> -->
-    <div class="text-center">
-      <mdb-btn v-on:click="BoxOauth">Login</mdb-btn>
+    <div class="md-layout-item md-size-100 text-center">
+      <md-button class="md-raised md-success" v-on:click="BoxOauth">Login</md-button>
     </div>
   </form>
   <!-- Material form login -->
@@ -15,7 +15,6 @@
 
 <script>
 const appConfig = require('../../config.js');     // Auth keys and redirect
-const boxSDK = require('box-node-sdk');       // Box SDK
 const querystring = require('querystring');   // Querystring stringifier
 
 export default {
@@ -25,7 +24,8 @@ export default {
             const payload = {
             'response_type': 'code',
             'client_id': appConfig.oauthClientId,
-            'redirect_uri': appConfig.redirectURI
+            'redirect_uri': appConfig.redirectURI,
+            'state': 'GENERATED_TOKEN'
             };
 
             // Build redirect URI and redirect

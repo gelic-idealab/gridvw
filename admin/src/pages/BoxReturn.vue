@@ -5,18 +5,14 @@
 <script>
 import axios from 'axios';
 
-const querystring = require('querystring');   // Querystring stringifier
 const appConfig = require('../../config.js');     // Auth keys and redirect
 const boxSDK = require('box-node-sdk'); 
+const querystring = require('querystring');   // Querystring stringifier
+
 
 export default {
     // data() {
-    //     return{
-    //         tokenInfo: {
-    //         accessToken: 'nvKMskt9VLDBpnYAvFZ5WKh2QpDallUA',
-    //         refreshToken: '',
-    //         acquiredAtMS: 0,
-    //         accessTokenTTLMS: 0
+    //     return {
     //         }
     //     }
     // },
@@ -28,29 +24,58 @@ export default {
             clientID: appConfig.oauthClientId,
             clientSecret: appConfig.oauthClientSecret
         });
-        
+        // eslint-disable-next-line 
+        console.log('client_id', appConfig.oauthClientId, 'client_secret', appConfig.oauthClientSecret);
+
         // Extract auth code
-        const auth_code = q.code;
-        // console.log(code);
-        
-        const data = {
+        const code = q.code;
+        const csrf = q.state
+        console.log('code', code, 'state', csrf);
+
+        let payload = {
             grant_type: 'authorization_code',
-            code: auth_code,
+            code: q.code,
             client_id: appConfig.oauthClientId,
             client_secret: appConfig.oauthClientSecret
-        };
+        }
 
-        const qs = querystring.stringify(data);
+        let qs = querystring.stringify(payload)
 
-        // Exchange code for access token
-        sdk.getTokensAuthorizationCodeGrant(auth_code, null)
-        .then(tokenInfo => {
-            const client = sdk.getPersistentClient(tokenInfo);
-            console.log(client);
-        });
+        const config = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }
+        
+        axios.post('https://api.box.com/oauth2/token', qs, config)
+        .then(response => console.log(response));
 
-        // axios.post(`https://api.box.com/oauth2/token?${qs}`)
-        // .then(response => console.log(response))
+        /*
+        * Validate that an object is a valid TokenInfo object
+        * @param {Object} obj The object to validate
+        * @returns {boolean} True if the passed in object is a valid TokenInfo object that
+        *  has all the expected properties, false otherwise
+        * @private
+
+        function isObjectValidTokenInfo(obj) {
+            return Boolean(obj &&
+                obj.accessToken &&
+                obj.refreshToken &&
+                obj.accessTokenTTLMS &&
+                obj.acquiredAtMS);
+        }
+        */
+
+        // sdk.getTokensAuthorizationCodeGrant(code, function(err, tokenInfo) {
+        //     try {
+        //         const client = sdk.getPersistentClient(tokenInfo);
+        //         console.log(client);
+        //     }
+        //     catch(err) {
+        //         console.log(err);
+        //     }
+        // });
+
     }
 }
 </script>
